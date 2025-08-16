@@ -38,7 +38,7 @@ export default function LoginPage() {
           <div className="login-logo-container">
             <span className="login-logo-icon">👁️</span>
           </div>
-          <h1 className="login-title">Eye Auth</h1>
+          <h1 className="login-title">Eye Detect</h1>
           <p className="login-subtitle">เข้าสู่ระบบด้วยความปลอดภัย</p>
         </div>
 
@@ -129,14 +129,6 @@ export default function LoginPage() {
                 <span className="login-divider-text">หรือ</span>
               </div>
             </div>
-
-            {/* Social Login Buttons */}
-            <div className="login-social-buttons">
-              <button type="button" className="login-social-button">
-                <span className="login-social-icon">🔍</span>
-                ลงชื่อเข้าใช้ด้วย Google
-              </button>
-            </div>
           </form>
 
           {/* Register Link */}
@@ -153,7 +145,7 @@ export default function LoginPage() {
         {/* Footer */}
         <div className="login-footer">
           <p className="login-footer-text">
-            © 2025 Eye Auth. ระบบรักษาความปลอดภัยขั้นสูง
+            © 2025 Eye Detect. ระบบรักษาความปลอดภัยขั้นสูง
           </p>
         </div>
       </div>
