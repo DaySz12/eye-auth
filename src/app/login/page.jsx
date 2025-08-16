@@ -23,11 +23,10 @@ export default function LoginPage() {
     });
 
     if (error) {
-      setError(error.message);
-    } else {
-      router.push("/dashboard");
-    }
-    setLoading(false);
+  setError(error.message);
+} else {
+  router.push("/iris-scan"); // 🔥 เปลี่ยนจาก "/dashboard"
+}
   };
 
   return (
