@@ -23,10 +23,11 @@ export default function LoginPage() {
     });
 
     if (error) {
-  setError(error.message);
-} else {
-  router.push("/iris-scan"); // 🔥 เปลี่ยนจาก "/dashboard"
-}
+      setError(error.message);
+    } else {
+      router.push("/dashboard");
+    }
+    setLoading(false);
   };
 
   return (
@@ -44,7 +45,6 @@ export default function LoginPage() {
         {/* Form Card */}
         <div className="login-form-card">
           <form onSubmit={handleLogin} className="login-form">
-            {/* Error Message */}
             {error && (
               <div className="login-error-message">
                 <div className="login-error-content">
@@ -109,11 +109,7 @@ export default function LoginPage() {
             </div>
 
             {/* Login Button */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="login-button"
-            >
+            <button type="submit" disabled={loading} className="login-button">
               {loading ? (
                 <div className="login-loading-content">
                   <div className="login-spinner"></div>
