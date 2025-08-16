@@ -135,7 +135,13 @@ export default function LoginPage() {
               </div>
             </div>
 
-            
+            {/* Social Login Buttons */}
+            <div className="login-social-buttons">
+              <button type="button" className="login-social-button">
+                <span className="login-social-icon">🔍</span>
+                ลงชื่อเข้าใช้ด้วย Google
+              </button>
+            </div>
           </form>
 
           {/* Register Link */}

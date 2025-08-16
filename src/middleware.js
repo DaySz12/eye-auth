@@ -10,9 +10,20 @@ export async function middleware(req) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  // ถ้าไม่มี session → redirect ไป login
-  if (!session && req.nextUrl.pathname.startsWith("/dashboard")) {
+  // Protected routes that need authentication
+  const protectedRoutes = ["/dashboard", "/iris-scan"];
+  const isProtectedRoute = protectedRoutes.some(route => 
+    req.nextUrl.pathname.startsWith(route)
+  );
+
+  // ถ้าไม่มี session และพยายามเข้า protected route → redirect ไป login
+  if (!session && isProtectedRoute) {
     return NextResponse.redirect(new URL("/login", req.url));
+  }
+
+  // ถ้ามี session และอยู่ที่หน้า login/register → redirect ไป dashboard
+  if (session && (req.nextUrl.pathname === "/login" || req.nextUrl.pathname === "/register")) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
   return res;
@@ -20,5 +31,5 @@ export async function middleware(req) {
 
 // กำหนด path ที่ middleware จะทำงาน
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/dashboard/:path*", "/iris-scan/:path*", "/login", "/register"],
 };

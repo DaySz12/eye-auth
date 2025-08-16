@@ -1,0 +1,534 @@
+/* iris-scan.css - Styles for iris scanning page */
+
+.iris-scan-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #faf5ff 100%);
+}
+
+.iris-scan-header {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.iris-scan-header-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.iris-scan-header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.iris-scan-logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.iris-scan-logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(45deg, #2563eb, #8b5cf6);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.125rem;
+}
+
+.iris-scan-logo-text h1 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #2563eb, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+}
+
+.iris-scan-logo-text p {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.iris-scan-logout-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.iris-scan-logout-btn:hover {
+  color: #374151;
+}
+
+.iris-scan-main {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.iris-scan-title-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.iris-scan-title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.iris-scan-subtitle {
+  color: #6b7280;
+}
+
+.iris-scan-main-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.iris-scan-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.iris-scan-camera-section {
+  flex: 1;
+}
+
+.iris-scan-video-container {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #111827;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.iris-scan-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.iris-scan-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iris-scan-detection-circle {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.iris-scan-detection-circle.scanning {
+  border-color: #3b82f6;
+  animation: pulse 2s infinite;
+}
+
+.iris-scan-detection-circle.success {
+  border-color: #10b981;
+}
+
+.iris-scan-detection-circle.error {
+  border-color: #ef4444;
+}
+
+.iris-scan-corner-guide {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border-color: white;
+}
+
+.iris-scan-corner-tl {
+  top: -0.5rem;
+  left: -0.5rem;
+  border-top: 4px solid;
+  border-left: 4px solid;
+  border-top-left-radius: 0.5rem;
+}
+
+.iris-scan-corner-tr {
+  top: -0.5rem;
+  right: -0.5rem;
+  border-top: 4px solid;
+  border-right: 4px solid;
+  border-top-right-radius: 0.5rem;
+}
+
+.iris-scan-corner-bl {
+  bottom: -0.5rem;
+  left: -0.5rem;
+  border-bottom: 4px solid;
+  border-left: 4px solid;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.iris-scan-corner-br {
+  bottom: -0.5rem;
+  right: -0.5rem;
+  border-bottom: 4px solid;
+  border-right: 4px solid;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.iris-scan-crosshair {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iris-scan-crosshair-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: white;
+  border-radius: 50%;
+}
+
+.iris-scan-animation {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.2);
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.iris-scan-success-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 185, 129, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iris-scan-success-icon {
+  background: white;
+  border-radius: 50%;
+  padding: 1rem;
+  color: #10b981;
+  font-size: 2.5rem;
+}
+
+.iris-scan-progress-section {
+  margin-top: 1rem;
+}
+
+.iris-scan-progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.iris-scan-progress-bar {
+  width: 100%;
+  background: #e5e7eb;
+  border-radius: 9999px;
+  height: 0.5rem;
+}
+
+.iris-scan-progress-fill {
+  background: #2563eb;
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.2s ease;
+}
+
+.iris-scan-control-panel {
+  width: 100%;
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.iris-scan-panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.iris-scan-user-info {
+  background: #f9fafb;
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.iris-scan-user-info h3 {
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.iris-scan-user-info p {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.iris-scan-status-section h3 {
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.iris-scan-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.iris-scan-status-indicator.ready {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.iris-scan-status-indicator.scanning {
+  background: #fefce8;
+  color: #a16207;
+}
+
+.iris-scan-status-indicator.success {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.iris-scan-status-indicator.error {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.iris-scan-status-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}
+
+.iris-scan-status-dot.ready {
+  background: #3b82f6;
+}
+
+.iris-scan-status-dot.scanning {
+  background: #eab308;
+  animation: pulse 2s infinite;
+}
+
+.iris-scan-status-dot.success {
+  background: #10b981;
+}
+
+.iris-scan-status-dot.error {
+  background: #ef4444;
+}
+
+.iris-scan-status-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.iris-scan-error-message {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+}
+
+.iris-scan-error-text {
+  font-size: 0.875rem;
+  color: #b91c1c;
+}
+
+.iris-scan-instructions h3 {
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.iris-scan-instructions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.iris-scan-instruction-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.iris-scan-instruction-bullet {
+  color: #3b82f6;
+  margin-top: 0.125rem;
+}
+
+.iris-scan-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.iris-scan-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-size: 1rem;
+}
+
+.iris-scan-btn-camera {
+  background: #2563eb;
+  color: white;
+}
+
+.iris-scan-btn-camera:hover {
+  background: #1d4ed8;
+}
+
+.iris-scan-btn-start {
+  background: linear-gradient(45deg, #2563eb, #8b5cf6);
+  color: white;
+  transform: scale(1);
+}
+
+.iris-scan-btn-start:hover {
+  background: linear-gradient(45deg, #1d4ed8, #7c3aed);
+  transform: scale(1.05);
+}
+
+.iris-scan-btn-retry {
+  background: #d97706;
+  color: white;
+}
+
+.iris-scan-btn-retry:hover {
+  background: #b45309;
+}
+
+.iris-scan-success-message {
+  text-align: center;
+}
+
+.iris-scan-success-title {
+  color: #10b981;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.iris-scan-success-subtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.iris-scan-footer {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.iris-scan-footer p {
+  margin-bottom: 0.25rem;
+}
+
+.iris-scan-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #f3f4f6;
+}
+
+.iris-scan-spinner {
+  animation: spin 1s linear infinite;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  border: 2px solid #2563eb;
+  border-top-color: transparent;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+  .iris-scan-main {
+    padding: 2rem 1.5rem;
+  }
+  
+  .iris-scan-header-content {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .iris-scan-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .iris-scan-control-panel {
+    width: 20rem;
+    margin: 0;
+  }
+  
+  .iris-scan-header-content {
+    padding: 0 2rem;
+  }
+}
