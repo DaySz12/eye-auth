@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import "./login.css";
@@ -12,21 +12,63 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  useEffect(() => {
+    // Check if user is already logged in
+    const checkUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        router.push("/dashboard");
+      }
+    };
+    
+    checkUser();
+
+    // Listen for auth state changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) {
+        router.push("/dashboard");
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [router]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email.trim(),
+        password,
+      });
 
-    if (error) {
-      setError(error.message);
-    } else {
-      router.push("/dashboard");
+      if (error) {
+        // Handle different error types with Thai messages
+        switch (error.message) {
+          case 'Invalid login credentials':
+            setError("อีเมลหรือรหัสผ่านไม่ถูกต้อง");
+            break;
+          case 'Email not confirmed':
+            setError("กรุณายืนยันอีเมลก่อนเข้าสู่ระบบ");
+            break;
+          case 'Too many requests':
+            setError("ลองเข้าสู่ระบบหลายครั้งเกินไป กรุณารอสักครู่");
+            break;
+          default:
+            setError(error.message);
+        }
+        console.error("Login error:", error);
+      } else if (data.user) {
+        // Successful login - redirect handled by auth state change
+        console.log("Login successful:", data.user.email);
+      }
+    } catch (error) {
+      console.error("Exception during login:", error);
+      setError("เกิดข้อผิดพลาดในการเข้าสู่ระบบ");
     }
+
     setLoading(false);
   };
 
@@ -38,7 +80,7 @@ export default function LoginPage() {
           <div className="login-logo-container">
             <span className="login-logo-icon">👁️</span>
           </div>
-          <h1 className="login-title">Eye Detect</h1>
+          <h1 className="login-title">Eye Auth</h1>
           <p className="login-subtitle">เข้าสู่ระบบด้วยความปลอดภัย</p>
         </div>
 
@@ -68,6 +110,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  disabled={loading}
                 />
               </div>
             </div>
@@ -86,11 +129,13 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  disabled={loading}
                 />
                 <button
                   type="button"
                   className="login-password-toggle"
                   onClick={() => setShowPassword(!showPassword)}
+                  disabled={loading}
                 >
                   <span>{showPassword ? "🙈" : "👁️"}</span>
                 </button>
@@ -100,7 +145,7 @@ export default function LoginPage() {
             {/* Remember Me & Forgot Password */}
             <div className="login-options-row">
               <label className="login-checkbox-container">
-                <input type="checkbox" className="login-checkbox" />
+                <input type="checkbox" className="login-checkbox" disabled={loading} />
                 <span className="login-checkbox-label">จดจำฉันไว้</span>
               </label>
               <a href="#" className="login-forgot-password">
@@ -109,7 +154,7 @@ export default function LoginPage() {
             </div>
 
             {/* Login Button */}
-            <button type="submit" disabled={loading} className="login-button">
+            <button type="submit" disabled={loading || !email || !password} className="login-button">
               {loading ? (
                 <div className="login-loading-content">
                   <div className="login-spinner"></div>
@@ -145,7 +190,7 @@ export default function LoginPage() {
         {/* Footer */}
         <div className="login-footer">
           <p className="login-footer-text">
-            © 2025 Eye Detect. ระบบรักษาความปลอดภัยขั้นสูง
+            © 2025 Eye Auth. ระบบรักษาความปลอดภัยขั้นสูง
           </p>
         </div>
       </div>
