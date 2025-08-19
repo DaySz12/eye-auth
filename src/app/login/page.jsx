@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import "./login.css";
+import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -178,12 +179,12 @@ export default function LoginPage() {
 
           {/* Register Link */}
           <div className="login-register-section">
-            <p className="login-register-text">
-              ยังไม่มีบัญชี?{" "}
-              <a href="/register" className="login-register-link">
-                สมัครสมาชิกเลย
-              </a>
-            </p>
+  <p className="login-register-text">
+  ยังไม่มีบัญชี?{" "}
+  <Link href="/register" className="login-register-link">
+    สมัครสมาชิกเลย
+  </Link>
+</p>
           </div>
         </div>
 

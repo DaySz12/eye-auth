@@ -3,6 +3,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import "./register.css"; // ใช้ CSS แยกสำหรับ register page
+import Link from "next/link";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -225,11 +226,11 @@ export default function RegisterPage() {
           {/* Login Link */}
           <div className="register-login-section">
             <p className="register-login-text">
-              มีบัญชีอยู่แล้ว?{" "}
-              <a href="/login" className="register-login-link">
-                เข้าสู่ระบบเลย
-              </a>
-            </p>
+  มีบัญชีอยู่แล้ว?{" "}
+  <Link href="/login" className="register-login-link">
+    เข้าสู่ระบบเลย
+  </Link>
+</p>
           </div>
         </div>
 
