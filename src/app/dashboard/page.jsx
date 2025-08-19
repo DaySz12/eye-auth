@@ -93,46 +93,10 @@ export default function DashboardPage() {
             ออนไลน์ - ระบบพร้อมใช้งาน
           </div>
         </div>
+</div>
+       
 
-        {/* Stats Grid */}
-        <div className="dashboard-stats-grid">
-          <div className="dashboard-stat-card">
-            <div className="dashboard-stat-number">{stats.totalScans}</div>
-            <div className="dashboard-stat-label">การสแกนทั้งหมด</div>
-          </div>
-          <div className="dashboard-stat-card">
-            <div className="dashboard-stat-number">{stats.successRate}%</div>
-            <div className="dashboard-stat-label">ความแม่นยำ</div>
-          </div>
-          <div className="dashboard-stat-card">
-            <div className="dashboard-stat-number">24/7</div>
-            <div className="dashboard-stat-label">ระบบรักษาความปลอดภัย</div>
-          </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="dashboard-quick-actions">
-          <h3 className="dashboard-quick-actions-title">การดำเนินการด่วน</h3>
-          <div className="dashboard-quick-buttons">
-            <button className="dashboard-quick-button" onClick={handleIrisScan}>
-              <span>👁️</span>
-              สแกนม่านตาด่วน
-            </button>
-            <button className="dashboard-quick-button" onClick={handleProfile}>
-              <span>👤</span>
-              ข้อมูลส่วนตัว
-            </button>
-            <button className="dashboard-quick-button">
-              <span>📊</span>
-              ดูประวัติ
-            </button>
-            <button className="dashboard-quick-button">
-              <span>🔒</span>
-              ตั้งค่าความปลอดภัย
-            </button>
-          </div>
-        </div>
-
+      
         {/* Action Cards */}
         <div className="dashboard-actions-grid">
           <div className="dashboard-action-card" onClick={handleIrisScan}>
@@ -145,26 +109,7 @@ export default function DashboardPage() {
             </p>
           </div>
 
-          <div className="dashboard-action-card" onClick={handleSecuritySettings}>
-            <div className="dashboard-card-icon security">
-              <span>🔐</span>
-            </div>
-            <h3 className="dashboard-card-title">ตั้งค่าความปลอดภัย</h3>
-            <p className="dashboard-card-description">
-              จัดการการตั้งค่าความปลอดภัยและการเข้าถึงระบบ
-            </p>
-          </div>
-
-          <div className="dashboard-action-card" onClick={handleProfile}>
-            <div className="dashboard-card-icon settings">
-              <span>⚙️</span>
-            </div>
-            <h3 className="dashboard-card-title">จัดการโปรไฟล์</h3>
-            <p className="dashboard-card-description">
-              แก้ไขข้อมูลส่วนตัวและการตั้งค่าบัญชีผู้ใช้
-            </p>
-          </div>
-        </div>
+          
 
         {/* Logout Section */}
         <div className="dashboard-logout-section">

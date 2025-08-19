@@ -1,0 +1,530 @@
+/* iris-scan.css - Styles for iris scan page */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.iris-scan-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0a2e 0%, #1a0d40 25%, #2d1b69 50%, #4c1d95 75%, #581c87 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  animation: backgroundPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundPulse {
+  0% { background: linear-gradient(135deg, #0f0a2e, #1a0d40, #2d1b69, #4c1d95); }
+  100% { background: linear-gradient(135deg, #1a0d40, #2d1b69, #4c1d95, #6b21a8); }
+}
+
+/* Background Effects */
+.iris-scan-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  animation: overlayFloat 10s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes overlayFloat {
+  0% { opacity: 0.7; transform: rotate(0deg); }
+  100% { opacity: 1; transform: rotate(1deg); }
+}
+
+/* Floating Particles */
+.iris-scan-particle {
+  position: absolute;
+  background: rgba(168, 85, 247, 0.4);
+  border-radius: 50%;
+  animation: particleFloat 20s linear infinite;
+  pointer-events: none;
+}
+
+.iris-scan-particle:nth-child(1) {
+  width: 6px;
+  height: 6px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.iris-scan-particle:nth-child(2) {
+  width: 8px;
+  height: 8px;
+  top: 20%;
+  right: 20%;
+  animation-delay: 5s;
+}
+
+.iris-scan-particle:nth-child(3) {
+  width: 4px;
+  height: 4px;
+  bottom: 30%;
+  left: 30%;
+  animation-delay: 10s;
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  25% { transform: translate(20px, -20px) scale(1.2); opacity: 0.8; }
+  50% { transform: translate(-20px, 20px) scale(0.8); opacity: 0.6; }
+  75% { transform: translate(15px, -15px) scale(1.1); opacity: 0.9; }
+}
+
+/* Main Content */
+.iris-scan-main {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+  padding: 3rem 2rem;
+  max-width: 600px;
+  width: 100%;
+  animation: containerEntry 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes containerEntry {
+  0% { 
+    opacity: 0; 
+    transform: translateY(40px) scale(0.95); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+/* Title */
+.iris-scan-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  background: linear-gradient(45deg, #ffffff, #e0e7ff, #c7d2fe);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% { filter: brightness(1); text-shadow: 0 0 30px rgba(139, 92, 246, 0.5); }
+  100% { filter: brightness(1.2); text-shadow: 0 0 40px rgba(139, 92, 246, 0.7); }
+}
+
+.iris-scan-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  animation: subtitleSlide 0.6s ease-out 0.3s both;
+}
+
+@keyframes subtitleSlide {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Video Container */
+.iris-scan-video-container {
+  position: relative;
+  margin-bottom: 2.5rem;
+  display: inline-block;
+  animation: videoEntry 0.8s ease-out 0.5s both;
+}
+
+@keyframes videoEntry {
+  0% { opacity: 0; transform: scale(0.9) rotateY(20deg); }
+  100% { opacity: 1; transform: scale(1) rotateY(0deg); }
+}
+
+.iris-scan-video {
+  width: 400px;
+  height: 300px;
+  border-radius: 20px;
+  border: 3px solid rgba(139, 92, 246, 0.3);
+  background: linear-gradient(135deg, #1f2937, #374151);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.iris-scan-video:hover {
+  transform: scale(1.02);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Video Overlay Effects */
+.iris-scan-video-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #8b5cf6, #6366f1, #3b82f6, #8b5cf6);
+  border-radius: 22px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: borderRotate 4s linear infinite;
+}
+
+.iris-scan-video-container:hover::before {
+  opacity: 0.6;
+}
+
+@keyframes borderRotate {
+  0% { background: linear-gradient(45deg, #8b5cf6, #6366f1, #3b82f6, #8b5cf6); }
+  25% { background: linear-gradient(135deg, #6366f1, #3b82f6, #8b5cf6, #6366f1); }
+  50% { background: linear-gradient(225deg, #3b82f6, #8b5cf6, #6366f1, #3b82f6); }
+  75% { background: linear-gradient(315deg, #8b5cf6, #6366f1, #3b82f6, #8b5cf6); }
+  100% { background: linear-gradient(45deg, #8b5cf6, #6366f1, #3b82f6, #8b5cf6); }
+}
+
+/* Scanning Overlay */
+.iris-scan-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 18px;
+  background: radial-gradient(circle, transparent 30%, rgba(139, 92, 246, 0.1) 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.iris-scan-video.scanning .iris-scan-overlay {
+  opacity: 1;
+  animation: scanPulse 2s ease-in-out infinite;
+}
+
+@keyframes scanPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* Scan Lines */
+.iris-scan-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.iris-scan-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #a855f7, transparent);
+  animation: scanLine 3s linear infinite;
+  opacity: 0;
+}
+
+.iris-scan-video.scanning .iris-scan-line {
+  opacity: 1;
+}
+
+@keyframes scanLine {
+  0% { top: 0; opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Control Buttons */
+.iris-scan-controls {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  animation: controlsSlide 0.6s ease-out 0.7s both;
+}
+
+@keyframes controlsSlide {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.iris-scan-btn {
+  padding: 0.875rem 2rem;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-width: 140px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.iris-scan-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.iris-scan-btn:hover::before {
+  left: 100%;
+}
+
+.iris-scan-btn:active {
+  transform: scale(0.98);
+}
+
+/* Start Camera Button */
+.iris-scan-btn-start {
+  background: linear-gradient(45deg, #22c55e, #16a34a);
+  color: white;
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+}
+
+.iris-scan-btn-start:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(34, 197, 94, 0.4);
+  background: linear-gradient(45deg, #16a34a, #15803d);
+}
+
+/* Stop Camera Button */
+.iris-scan-btn-stop {
+  background: linear-gradient(45deg, #ef4444, #dc2626);
+  color: white;
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+}
+
+.iris-scan-btn-stop:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(239, 68, 68, 0.4);
+  background: linear-gradient(45deg, #dc2626, #b91c1c);
+}
+
+/* Back Button */
+.iris-scan-btn-back {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.iris-scan-btn-back:hover {
+  transform: translateY(-3px);
+  border-color: rgba(168, 85, 247, 0.8);
+  background: rgba(168, 85, 247, 0.1);
+  box-shadow: 0 10px 25px rgba(168, 85, 247, 0.2);
+}
+
+/* Status Messages */
+.iris-scan-status {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(15px);
+  animation: statusSlide 0.5s ease-out;
+}
+
+@keyframes statusSlide {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.iris-scan-status-success {
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #86efac;
+}
+
+.iris-scan-status-error {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+
+.iris-scan-status-info {
+  background: rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
+}
+
+/* Instructions */
+.iris-scan-instructions {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0 auto 2rem auto;
+  animation: instructionsSlide 0.6s ease-out 0.9s both;
+}
+
+@keyframes instructionsSlide {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading Spinner */
+.iris-scan-spinner {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Progress Bar */
+.iris-scan-progress {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.iris-scan-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+.iris-scan-progress-fill.scanning {
+  animation: progressPulse 2s ease-in-out infinite;
+}
+
+@keyframes progressPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Footer Info */
+.iris-scan-footer {
+  margin-top: 2rem;
+  text-align: center;
+  animation: footerFade 0.6s ease-out 1.1s both;
+}
+
+@keyframes footerFade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.iris-scan-footer-text {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .iris-scan-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .iris-scan-main {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+
+  .iris-scan-title {
+    font-size: 2rem;
+  }
+
+  .iris-scan-video {
+    width: 320px;
+    height: 240px;
+  }
+
+  .iris-scan-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .iris-scan-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .iris-scan-title {
+    font-size: 1.75rem;
+  }
+
+  .iris-scan-video {
+    width: 280px;
+    height: 210px;
+  }
+
+  .iris-scan-main {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Accessibility */
+.iris-scan-btn:focus {
+  outline: 2px solid rgba(139, 92, 246, 0.7);
+  outline-offset: 2px;
+}
+
+.iris-scan-video:focus {
+  outline: 2px solid rgba(139, 92, 246, 0.7);
+  outline-offset: 4px;
+}
+
+/* Animation for camera state changes */
+.iris-scan-video.camera-starting {
+  animation: cameraStarting 0.5s ease-out;
+}
+
+.iris-scan-video.camera-stopping {
+  animation: cameraStopping 0.3s ease-in;
+}
+
+@keyframes cameraStarting {
+  0% { opacity: 0.5; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cameraStopping {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0.7; transform: scale(0.98); }
+}
