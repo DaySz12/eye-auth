@@ -76,7 +76,7 @@ export default function DashboardPage() {
             <span className="dashboard-logo-icon">👁️</span>
           </div>
           <h1 className="dashboard-title">Eye Auth Dashboard</h1>
-          <p className="dashboard-subtitle">ระบบรักษาความปลอดภัยขั้นสูง</p>
+        
         </div>
 
         {/* Welcome Card */}
@@ -93,10 +93,7 @@ export default function DashboardPage() {
             ออนไลน์ - ระบบพร้อมใช้งาน
           </div>
         </div>
-</div>
-       
 
-      
         {/* Action Cards */}
         <div className="dashboard-actions-grid">
           <div className="dashboard-action-card" onClick={handleIrisScan}>
@@ -108,8 +105,7 @@ export default function DashboardPage() {
               เริ่มการสแกนม่านตาเพื่อยืนยันตัวตนด้วยเทคโนโลยี AI ขั้นสูง
             </p>
           </div>
-
-          
+        </div>
 
         {/* Logout Section */}
         <div className="dashboard-logout-section">
@@ -122,7 +118,7 @@ export default function DashboardPage() {
         {/* Footer */}
         <div className="dashboard-footer">
           <p className="dashboard-footer-text">
-            © 2025 Eye Auth. ระบบรักษาความปลอดภัยขั้นสูง - การสแกนล่าสุด: {stats.lastScan}
+            
           </p>
         </div>
       </div>
